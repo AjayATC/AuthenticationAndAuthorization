@@ -1,12 +1,7 @@
+
 package com.example.userapp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -16,21 +11,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Please provide a valid email address")
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String role = "USER";
 
     public User() {
     }
 
-    public User(Long id, String name, String email) {
+    public User(Long id, String name, String email,
+                String password, String role) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
+
+    // Getters and setters
 
     public Long getId() {
         return id;
@@ -54,5 +58,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

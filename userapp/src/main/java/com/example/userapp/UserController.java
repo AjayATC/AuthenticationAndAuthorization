@@ -3,7 +3,7 @@ package com.example.userapp;
 
 import com.example.userapp.dto.UserRequestDTO;
 import com.example.userapp.dto.UserResponseDTO;
-import com.example.userapp.service.UserService;
+import com.example.userapp.UserService;
 
 import jakarta.validation.Valid;
 
